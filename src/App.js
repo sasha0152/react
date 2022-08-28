@@ -5,6 +5,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import ChatsList from './ChatsList';
+import { Routes, Route, Link } from "react-router-dom";
+import HomePage from './pages/HomePage';
+import ChatPage from './pages/ChatPage';
+import ProfilePage from './pages/Profilepage';
 
 
 function App () {
@@ -58,44 +62,64 @@ function App () {
         e.preventDefault()
         fetchData()
     }
+   
 
     return (
-      <div>
-        <Box>
-        <ChatsList chats={chats}></ChatsList>
-        </Box>
-        <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        '& > :not(style)': { m: 1 },
-      }}
-    >
-      <TextField
-        helperText=" "
-        id="demo-helper-text-aligned"
-        label="Name"
-        onChange={e =>setName(e.target.value)}
+      
+      <div >
+        <>
+        <headers>
+          <Link to={'/'}>Главная</Link>
+          <Link to={'/Chat'}>Чаты</Link>
+          <Link to={'/Profile'}>Профиль</Link>
+        </headers>
+
+        <Routes>
+          <Route path={'/'} element={<HomePage/>} />
+          <Route path={'/Chat'} element={<ChatPage/>} />
+          <Route path={'/Profile'} element={<ProfilePage/>} />
+        </Routes>
+      </>
+         
+         <Box>
+          <ChatsList chats={chats}></ChatsList>
+         </Box>
+                
+         <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '& > :not(style)': { m: 1 },
+          }}
+          >
+
+          <TextField
+            helperText=" "
+            id="demo-helper-text-aligned"
+            label="Name"
+            onChange={e =>setName(e.target.value)}
+          />
+
+          <TextField
+            helperText=" "
+            id="demo-helper-text-aligned-no-helper"
+            label="message"
+            onChange={e =>setMessage(e.target.value)}
+            focused
+          />
+
+          <Button variant="contained" disableElevation onClick={handleSubmit}>
+            Отправить
+          </Button>
+
+         </Box>
         
-      />
-      <TextField
-        helperText=" "
-        id="demo-helper-text-aligned-no-helper"
-        label="message"
-        onChange={e =>setMessage(e.target.value)}
-        focused
-      />
-      <Button variant="contained" disableElevation onClick={handleSubmit}>
-      Отправить
-     </Button>
-     </Box>
-     
     
-     <MessagesList messages={messages}></MessagesList>
+        <MessagesList messages={messages}></MessagesList>
      
       </div>
       
-    )
+    );
     
 }
 
