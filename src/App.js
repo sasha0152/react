@@ -8,7 +8,7 @@ import ChatsList from './ChatsList';
 import { Routes, Route, Link } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import ChatPage from './pages/ChatPage';
-import ProfilePage from './pages/Profilepage';
+import ProfilePage from './pages/ProfilePage';
 
 
 function App () {
@@ -82,13 +82,13 @@ function App () {
         </>
          
           <ul>
-            <li> </li>
+            <li> <ChatsList chats={chats}></ChatsList> </li>
             <li> </li>
             <li> </li>
           </ul>
 
          <Box>
-          <ChatsList chats={chats}></ChatsList>
+          
          </Box>
                 
          <Box
