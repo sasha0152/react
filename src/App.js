@@ -68,19 +68,25 @@ function App () {
       
       <div >
         <>
-        <headers>
+          <headers>
           <Link to={'/'}>Главная</Link>
           <Link to={'/Chat'}>Чаты</Link>
           <Link to={'/Profile'}>Профиль</Link>
-        </headers>
+          </headers>
 
-        <Routes>
+          <Routes>
           <Route path={'/'} element={<HomePage/>} />
           <Route path={'/Chat'} element={<ChatPage/>} />
           <Route path={'/Profile'} element={<ProfilePage/>} />
-        </Routes>
-      </>
+          </Routes>
+        </>
          
+          <ul>
+            <li> </li>
+            <li> </li>
+            <li> </li>
+          </ul>
+
          <Box>
           <ChatsList chats={chats}></ChatsList>
          </Box>
