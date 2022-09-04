@@ -5,27 +5,33 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import ChatsList from './ChatsList';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import ChatPage from './pages/ChatPage';
 import ProfilePage from './pages/ProfilePage';
+import CustomLink from './components/CustomLink';
+import { red } from '@mui/material/colors';
+import Layout from './components/Layout';
+import NotFoundPage from './pages/NotFoundPage';
+
+const setActive = ({isActive}) =>isActive ? 'active-link' : ''
 
 
 function App () {
     const [message, setMessage] = useState("")
     const [name, setName] = useState("")
     const [chats, setChats] = useState([
-        {
-            id: 0,
-            name: 'друзья'
-        }
+       {
+         id: 0,
+        name: 'друзья'
+      }
     ])
     const [messages, setMessages] = useState([
-        {
-            id: 0,
-            text: 'Привет!',
-            author: 'Иван'
-        }
+      {
+        id: 0,
+         text: 'Привет!',
+         author: 'Иван'
+      }
     ])
 
     function fetchData() {
@@ -67,19 +73,16 @@ function App () {
     return (
       
       <div >
-        <>
-          <headers>
-          <Link to={'/'}>Главная</Link>
-          <Link to={'/Chat'}>Чаты</Link>
-          <Link to={'/Profile'}>Профиль</Link>
-          </headers>
-
+               
           <Routes>
-          <Route path={'/'} element={<HomePage/>} />
-          <Route path={'/Chat'} element={<ChatPage/>} />
-          <Route path={'/Profile'} element={<ProfilePage/>} />
+            <Route path={'/'} element={<Layout/>}>
+              <Route index path={'/'} element={<HomePage/>} />
+              <Route path={'/Chat'} element={<ChatPage/>} />
+              <Route path={'/Profile'} element={<ProfilePage/>} />
+            </Route>   
+            <Route path={'*'} element={<NotFoundPage/>} />
           </Routes>
-        </>
+        
          
           <ul>
             <li> <ChatsList chats={chats}></ChatsList> </li>
@@ -114,11 +117,12 @@ function App () {
             focused
           />
 
-          <Button variant="contained" disableElevation onClick={handleSubmit}>
-            Отправить
-          </Button>
+          
 
          </Box>
+         <Button variant="contained" disableElevation onClick={handleSubmit}>
+            Отправить
+          </Button>
         
     
         <MessagesList messages={messages}></MessagesList>
