@@ -12,7 +12,9 @@ const Layout = () => {
               <CustomLink  to={'/Profile'}>Профиль</CustomLink>
               
             </headers>
-            
+            <main>
+            <Outlet/>
+            </main>
             
         </>
     )
